@@ -1,6 +1,5 @@
-class Task < ApplicationRecord
-  belongs_to :user
-  has_many :subtasks
+class Subtask < ApplicationRecord
+  belongs_to :task
 
   validates :name, presence: true
   validates :completed, inclusion: [true, false]
