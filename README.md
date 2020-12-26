@@ -39,6 +39,7 @@ $ solargraph bundle
 # Initialize Rails.
 $ rails db:create
 $ rails db:migrate
+$ rails db:seed
 
 # Start the app!
 $ rails server
