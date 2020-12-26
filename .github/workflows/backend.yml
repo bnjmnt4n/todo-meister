@@ -1,0 +1,35 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+    - '.github/workflows/**'
+    - 'backend/**'
+  pull_request:
+    branches:
+      - master
+    paths:
+    - '.github/workflows/**'
+    - 'backend/**'
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6.6'
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.7.8
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        appdir: 'backend'
