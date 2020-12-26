@@ -1,10 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import TaskItem from "../TaskItem";
+import TaskList from "../TaskList";
 
 function TaskItemRoute() {
   const { taskId } = useParams<{ taskId: string }>();
 
-  return <div>Task Item page. Task ID: {taskId}</div>;
+  return (
+    <div>
+      <TaskList />
+      <TaskItem taskId={taskId} />
+    </div>
+  );
 }
 
 export default TaskItemRoute;

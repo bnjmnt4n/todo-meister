@@ -1,7 +1,12 @@
 import React from "react";
+import TaskList from "../TaskList";
 
 function TaskListRoute() {
-  return <div>Task List page.</div>;
+  return (
+    <div>
+      <TaskList />
+    </div>
+  );
 }
 
 export default TaskListRoute;
