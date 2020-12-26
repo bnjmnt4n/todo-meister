@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/bnjmnt4n/jsonapi-resources.git
+  revision: d9f77e0ab2c02b186df8487dae334edf7b1e1bc8
+  specs:
+    jsonapi-resources (0.9.11)
+      activerecord (>= 4.1)
+      concurrent-ruby
+      railties (>= 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,6 +208,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  jsonapi-resources!
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
