@@ -1,10 +1,21 @@
 name: Frontend CI
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+    - '.github/workflows/**'
+    - 'frontend/**'
+  pull_request:
+    paths:
+    - '.github/workflows/**'
+    - 'frontend/**'
 
 jobs:
   frontend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
     - uses: actions/checkout@v2
@@ -12,7 +23,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14
-    - run: cd frontend
     - run: npm ci
     - name: Lint frontend codebase
       run: npm run lint
