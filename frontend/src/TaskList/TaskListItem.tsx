@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
-import { Task } from "../types";
+import { Identifiable, Task } from "../types";
 
-type TaskListItemProps = { id: string } & Task;
+type TaskListItemProps = Identifiable<Task>;
 
 function TaskListItem({ id, name, description, completed }: TaskListItemProps) {
   const history = useHistory();
