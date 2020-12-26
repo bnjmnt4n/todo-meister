@@ -1,4 +1,3 @@
-import React from "react";
 import useTask from "./hooks/useTask";
 
 type TaskItemRouteProps = {
