@@ -20,12 +20,27 @@ I'm running the following versions locally, but any recent PostgreSQL release sh
 ### Setup
 
 ```sh
-# If you have Nix installed, the configured Nix shell will install Ruby/PostgreSQL,
-# and start a local PostgreSQL instance.
+$ cd backend
+
+# If you have Nix installed, the configured Nix shell will install Ruby,
+# all gem dependencies and PostgreSQL.
 $ nix-shell
+# Start the PostgreSQL server.
+$ ./start_postgresql.sh
+
 # Otherwise, manually install Ruby and PostgreSQL and start up PostgreSQL.
+# Then install dependencies using Bundler.
+$ bundle install
+
+# Setup Solargraph for better development experience.
+$ solargraph download-core
+$ solargraph bundle
+
+# Initialize Rails.
 $ rails db:create
 $ rails db:migrate
+
+# Start the app!
 $ rails server
 ```
 
@@ -35,10 +50,16 @@ The frontend is a React application written in TypeScript, created using create-
 
 ### Setup
 
-``` sh
+```sh
+$ cd frontend
+
 # If you have Nix installed, the configured Nix shell will install Node.js.
 $ nix-shell
 # Otherwise, manually install Node.js.
+
+# Install dependencies.
 $ npm install
+
+# Start the app!
 $ npm start
 ```
