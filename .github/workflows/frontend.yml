@@ -5,13 +5,13 @@ on:
     branches:
       - master
     paths:
-    - '.github/workflows/**'
+    - '.github/workflows/frontend.yml'
     - 'frontend/**'
   pull_request:
     branches:
       - master
     paths:
-    - '.github/workflows/**'
+    - '.github/workflows/frontend.yml'
     - 'frontend/**'
 
 jobs:
@@ -32,6 +32,8 @@ jobs:
       run: npm run lint
     - name: Build frontend
       run: npm run build
+      env:
+        REACT_APP_BACKEND_API: ${{ secrets.APP_BACKEND_API }}
     - name: Publish on Netlify
       uses: nwtgck/actions-netlify@v1.1
       with:
