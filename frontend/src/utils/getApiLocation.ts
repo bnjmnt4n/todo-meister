@@ -8,7 +8,7 @@ function getApiLocation(url: string) {
     DEFAULT_BACKEND_API
   );
 
-  return `${BACKEND_API}/${url}`;
+  return `${BACKEND_API}${url}`;
 }
 
 export default getApiLocation;
