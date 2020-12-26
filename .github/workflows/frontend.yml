@@ -2,10 +2,14 @@ name: Frontend CI
 
 on:
   push:
+    branches:
+      - master
     paths:
     - '.github/workflows/**'
     - 'frontend/**'
   pull_request:
+    branches:
+      - master
     paths:
     - '.github/workflows/**'
     - 'frontend/**'
@@ -29,10 +33,15 @@ jobs:
     - name: Build frontend
       run: npm run build
     - name: Publish on Netlify
-      uses: netlify/actions/build@master
+      uses: nwtgck/actions-netlify@v1.1
+      with:
+        publish-dir: './frontend/build'
+        production-branch: master
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+        enable-pull-request-comment: false
+        enable-commit-comment: false
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        NETLIFY_BASE: frontend
-        NETLIFY_CMD: npm build
-        NETLIFY_DIR: frontend/build
+      timeout-minutes: 1
