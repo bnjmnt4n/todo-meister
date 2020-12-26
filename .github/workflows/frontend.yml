@@ -1,0 +1,28 @@
+name: Frontend CI
+
+on: [push, pull_request]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - run: cd frontend
+    - run: npm ci
+    - name: Lint frontend codebase
+      run: npm run lint
+    - name: Build frontend
+      run: npm run build
+    - name: Publish on Netlify
+      uses: netlify/actions/build@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_BASE: frontend
+        NETLIFY_CMD: npm build
+        NETLIFY_DIR: frontend/build
