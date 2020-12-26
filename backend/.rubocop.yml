@@ -1,0 +1,17 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    # TODO: don't exclude so many files, gradually re-enable
+    - bin/*
+    - Rakefile
+    - config.ru
+    - config/**/*.rb
+    - test/**/*.rb
+    - db/schema.rb
+    - db/migrate/**/*.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: False

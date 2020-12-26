@@ -619,6 +619,17 @@
     };
     version = "1.3.0";
   };
+  rubocop-rails = {
+    dependencies = ["activesupport" "rack" "rubocop"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0h656la1g644g54g3gidz45p6v8i1156nw6bi66cfx7078y1339d";
+      type = "gem";
+    };
+    version = "2.9.1";
+  };
   ruby-progressbar = {
     groups = ["default"];
     platforms = [];
