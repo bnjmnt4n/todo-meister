@@ -51,3 +51,6 @@ gem 'rubocop-rails', require: false
 # See https://github.com/cerebris/jsonapi-resources/pull/1346.
 # I had to fork that repository as well, since it seems like bundix might have some issues with different branch names.
 gem 'jsonapi-resources', git: 'https://github.com/bnjmnt4n/jsonapi-resources.git'
+
+# Allow CORS requests
+gem 'rack-cors'
