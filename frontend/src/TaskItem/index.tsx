@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import useDeleteTask from "../hooks/useDeleteTask";
+import useField from "../hooks/useField";
 import useTask from "../hooks/useTask";
 import useToggleTask from "../hooks/useToggleTask";
 import DeleteButton from "./DeleteButton";
@@ -19,6 +20,10 @@ function TaskItem({ taskId }: TaskItemProps) {
 
   const handleCheckboxChange = () => task && toggleTask(task.completed);
   const handleDelete = () => deleteTaskMutation.mutate();
+
+  const name = useField("name", task?.name);
+  const description = useField("description", task?.description);
+  const hasChanged = name.hasChanged || description.hasChanged;
 
   useEffect(() => {
     if (deleteTaskMutation.isSuccess) {
@@ -57,7 +62,9 @@ function TaskItem({ taskId }: TaskItemProps) {
         checked={task.completed}
         onChange={handleCheckboxChange}
       />
-      <h1>{task.name}</h1>
+      <h1>
+        <input {...name} />
+      </h1>
 
       <DeleteButton key={task.id} onDelete={handleDelete} />
       {deleteMessage && <div>{deleteMessage}</div>}
@@ -66,7 +73,11 @@ function TaskItem({ taskId }: TaskItemProps) {
         <p>Due date: {new Date(Date.parse(task.due_date)).toDateString()}</p>
       )}
 
-      <p>{task.description}</p>
+      <p>
+        <textarea {...description} />
+      </p>
+
+      {hasChanged && <p>Changes detected</p>}
     </div>
   );
 }
