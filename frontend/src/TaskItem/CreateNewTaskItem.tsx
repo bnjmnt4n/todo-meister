@@ -25,10 +25,10 @@ function CreateNewTaskItem() {
   useEffect(() => {
     if (createTaskMutation.isSuccess) {
       const newTaskId = createTaskMutation.data?.id;
-      console.log(createTaskMutation.data);
+
       // Redirect to the new task after deletion.
       if (newTaskId !== undefined) {
-        history.push(`/tasks/${newTaskId}`);
+        history.replace(`/tasks/${newTaskId}`);
       }
     }
   }, [history, createTaskMutation.isSuccess, createTaskMutation.data]);
