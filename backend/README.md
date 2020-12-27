@@ -1,24 +1,41 @@
-# README
+# Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The backend is a Rails application, using PostgreSQL for the database.
 
-Things you may want to cover:
+I'm running the following versions locally, but any recent PostgreSQL release should work fine.
 
-* Ruby version
+- Ruby: 2.6.6
+- PostgreSQL: 11.9
 
-* System dependencies
+## Setup
 
-* Configuration
+```sh
+$ cd backend
 
-* Database creation
+# If you have Nix installed, the configured Nix shell will install Ruby,
+# all gem dependencies and PostgreSQL.
+$ nix-shell
+# Start the PostgreSQL server.
+$ ./start_postgresql.sh
 
-* Database initialization
+# Otherwise, manually install Ruby and PostgreSQL and start up PostgreSQL.
+# Then install dependencies using Bundler.
+$ bundle install
 
-* How to run the test suite
+# Setup Solargraph for better development experience.
+$ solargraph download-core
+$ solargraph bundle
 
-* Services (job queues, cache servers, search engines, etc.)
+# Initialize Rails.
+$ rails db:create
+$ rails db:migrate
+$ rails db:seed
 
-* Deployment instructions
+# Start the app!
+# Note: by default, the frontend assumes the backend API is running at localhost:8000
+$ rails server --port 8000
+```
 
-* ...
+## Deploy
+
+The backend is deployed on [Heroku](https://todo-meister-api.herokuapp.com/) using [GitHub Actions](../.github/workflows/backend.yml). See [Heroku's Rails documentation](https://devcenter.heroku.com/articles/getting-started-with-rails6) for more information on the initial deploy steps.

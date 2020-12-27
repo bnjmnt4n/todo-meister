@@ -8,59 +8,13 @@
 |:---|:---|
 | Tan Siong Min, Benjamin | A0217960B |
 
-## Backend
+### Submission
 
-The backend is a Rails application, using PostgreSQL for the database.
+- [ ] [Mid-Assignment Submission Report](./submission/mid-assignment.org)
+- [X] [Rails screenshot](./submission/ruby-on-rails-screenshot.jpg)
+- [ ] Database schema diagram
 
-I'm running the following versions locally, but any recent PostgreSQL release should work fine.
+## Documentation
 
-- Ruby: 2.6.6
-- PostgreSQL: 11.9
-
-### Setup
-
-```sh
-$ cd backend
-
-# If you have Nix installed, the configured Nix shell will install Ruby,
-# all gem dependencies and PostgreSQL.
-$ nix-shell
-# Start the PostgreSQL server.
-$ ./start_postgresql.sh
-
-# Otherwise, manually install Ruby and PostgreSQL and start up PostgreSQL.
-# Then install dependencies using Bundler.
-$ bundle install
-
-# Setup Solargraph for better development experience.
-$ solargraph download-core
-$ solargraph bundle
-
-# Initialize Rails.
-$ rails db:create
-$ rails db:migrate
-$ rails db:seed
-
-# Start the app!
-$ rails server
-```
-
-## Frontend
-
-The frontend is a React application written in TypeScript, created using create-react-app.
-
-### Setup
-
-```sh
-$ cd frontend
-
-# If you have Nix installed, the configured Nix shell will install Node.js.
-$ nix-shell
-# Otherwise, manually install Node.js.
-
-# Install dependencies.
-$ npm install
-
-# Start the app!
-$ npm start
-```
+- [Frontend](./frontend/README.md)
+- [Backend](./backend/README.md)

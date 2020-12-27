@@ -36,12 +36,12 @@ Tasks will contain a brief title and an optional extended description. If desire
 * TODO Database schema
 
 * Tasks
-| Task                                                  | Priority |
-|-------------------------------------------------------+----------|
-| CRUD of tasks and subtasks                            | High     |
-| Filtering of tasks by completion status and tags      | High     |
-| Sorting by creation date, last edit date and due date | High     |
-| Users and authentication                              | Medium   |
-| Automated deploys of the frontend and backend         | Medium   |
-| Editing of tags                                       | Low      |
-| Styling                                               | Low      |
+| Task                                                  | Priority | Status      |
+|-------------------------------------------------------+----------+-------------|
+| CRUD of tasks and subtasks                            | High     | In progress |
+| Filtering of tasks by completion status and tags      | High     | Not started |
+| Sorting by creation date, last edit date and due date | High     | Not started |
+| Users and authentication                              | Medium   | Researching |
+| Automated deploys of the frontend and backend         | Medium   | Completed   |
+| Editing of tags                                       | Low      | Not started |
+| Styling                                               | Low      | Not started |
