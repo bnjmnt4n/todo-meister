@@ -8,7 +8,7 @@ function TaskItemRoute() {
   return (
     <div>
       <TaskList />
-      <TaskItem taskId={taskId} />
+      <TaskItem taskId={Number(taskId)} />
     </div>
   );
 }

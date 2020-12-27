@@ -20,7 +20,7 @@ function TaskList() {
   return (
     <div>
       {tasks.map((task) => (
-        <TaskListItem key={task.id} id={task.id} {...task.attributes} />
+        <TaskListItem key={task.id} {...task} />
       ))}
     </div>
   );

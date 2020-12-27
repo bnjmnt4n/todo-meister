@@ -1,14 +1,11 @@
 import useTasks from "./useTasks";
-import { Identifiable, Task } from "../types";
 
-function useTask(taskId: string) {
+function useTask(taskId: number) {
   const { isLoading, error, tasks } = useTasks();
 
-  let task: Identifiable<Task> | undefined;
-  let rawTask = tasks && tasks.find((task) => task.id === taskId);
-  if (rawTask) {
-    task = { ...rawTask.attributes, id: taskId };
-  }
+  const task = tasks && tasks.find((task) => task.id === taskId);
+  console.log(tasks);
+  console.log(task);
 
   return {
     task,

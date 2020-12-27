@@ -1,10 +1,8 @@
 import { useHistory } from "react-router-dom";
-import { Identifiable, Task } from "../types";
+import { Task } from "../types";
 import useToggleTask from "../hooks/useToggleTask";
 
-type TaskListItemProps = Identifiable<Task>;
-
-function TaskListItem({ id, name, description, completed }: TaskListItemProps) {
+function TaskListItem({ id, name, description, completed }: Task) {
   const history = useHistory();
   const toggleTaskMutation = useToggleTask(id);
 

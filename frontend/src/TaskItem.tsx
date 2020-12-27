@@ -1,7 +1,7 @@
 import useTask from "./hooks/useTask";
 
 type TaskItemRouteProps = {
-  taskId: string;
+  taskId: number;
 };
 
 function TaskItem({ taskId }: TaskItemRouteProps) {

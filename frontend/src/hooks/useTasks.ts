@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
-import { JsonApi, Task } from "../types";
+import { Task } from "../types";
 import getApiLocation from "../utils/getApiLocation";
 
 function useTasks() {
-  const { isLoading, data, error } = useQuery<JsonApi<Task>>("tasks", () =>
+  const { isLoading, data, error } = useQuery<Task[]>("tasks", () =>
     fetch(getApiLocation("/tasks")).then((res) => res.json())
   );
 
-  const tasks = data?.data;
+  const tasks = data;
 
   return {
     tasks,
