@@ -5,6 +5,7 @@ import useDeleteTask from "../hooks/useDeleteTask";
 import useField from "../hooks/useField";
 import useTask from "../hooks/useTask";
 import useToggleTask from "../hooks/useToggleTask";
+import useUpdateTask from "../hooks/useUpdateTask";
 import DeleteButton from "./DeleteButton";
 
 type TaskItemProps = {
@@ -15,15 +16,24 @@ function TaskItem({ taskId }: TaskItemProps) {
   const { task, isLoading, error } = useTask(taskId);
   const toggleTask = useToggleTask(taskId);
   const deleteTaskMutation = useDeleteTask(taskId);
+  const updateTaskMutation = useUpdateTask(taskId);
 
   const history = useHistory();
 
   const handleCheckboxChange = () => task && toggleTask(task.completed);
   const handleDelete = () => deleteTaskMutation.mutate();
 
+  // Used to handle updates to fields.
   const name = useField("name", task?.name);
   const description = useField("description", task?.description);
   const hasChanged = name.hasChanged || description.hasChanged;
+
+  const handleUpdate = () => {
+    updateTaskMutation.mutate({
+      name: name.value,
+      description: description.value,
+    });
+  };
 
   useEffect(() => {
     if (deleteTaskMutation.isSuccess) {
@@ -77,7 +87,11 @@ function TaskItem({ taskId }: TaskItemProps) {
         <textarea {...description} />
       </p>
 
-      {hasChanged && <p>Changes detected</p>}
+      {hasChanged && (
+        <p>
+          <button onClick={handleUpdate}>Update</button>
+        </p>
+      )}
     </div>
   );
 }
