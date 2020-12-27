@@ -1,6 +1,6 @@
-# todo-meister
+# TodoMeister
 
-This application is a simple todo list app, built for my [CVWO](https://github.com/CVWO) application.
+[TodoMeister](https://todo-meister.netlify.app/) is a simple todo list app, built for my [CVWO](https://github.com/CVWO) application.
 
 ## Details
 

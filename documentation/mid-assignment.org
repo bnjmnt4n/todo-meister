@@ -14,13 +14,13 @@ My goals for this assignment would be to learn and gain familiarity with the var
 - if possible, writing unit tests for the backend
 
 * Product
-*todo-meister* will be a simple and easy-to-use todo/task-list manager, with filtering/sorting capabilities.
+*TodoMeister* will be a simple and easy-to-use todo/task-list manager, with filtering/sorting capabilities.
 
 Users will be able to sign up for a new account, then login to the website to start managing their tasks.
 
 Tasks will contain a brief title and an optional extended description. If desired, users can also set a due date/deadline for their tasks. Tasks can also contain subtasks, to allow users to divide their large tasks into smaller, more attainable tasks. Tasks can also be tagged with various categories for easier management of tasks.
 
-*todo-meister* will also include filtering and sorting capabilities. All tasks will be shown by default, but they can be filtered based on their completion status, tags and due date. Tasks can also be sorted based on their creation date, last edit date and due date.
+*TodoMeister* will also include filtering and sorting capabilities. All tasks will be shown by default, but they can be filtered based on their completion status, tags and due date. Tasks can also be sorted based on their creation date, last edit date and due date.
 
 * App structure
 - The designed website/app will have separate frontend and backend codebases.
