@@ -1,16 +1,12 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show update destroy]
+  before_action :set_task, only: %i[update destroy]
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    # Fetch all tasks along with associated subtasks in 1 query
+    @tasks = Task.all.includes(:subtasks).distinct.order(:created_at)
 
-    render json: @tasks
-  end
-
-  # GET /tasks/1
-  def show
-    render json: @task
+    render json: @tasks.to_json(include: :subtasks)
   end
 
   # POST /tasks
