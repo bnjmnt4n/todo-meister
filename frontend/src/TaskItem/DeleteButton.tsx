@@ -1,25 +1,18 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-
-import useDeleteTask from "../hooks/useDeleteTask";
 
 type DeleteButtonProps = {
-  taskId: number;
+  onDelete: () => void;
 };
 
-function DeleteButton({ taskId }: DeleteButtonProps) {
-  const deleteTask = useDeleteTask(taskId);
-  const history = useHistory();
+function DeleteButton({ onDelete }: DeleteButtonProps) {
   const [shouldShowConfirmation, setShouldShowConfirmation] = useState(false);
 
-  // TODO: add better error handling logic in case of deletion errors.
   const handleClick = () => {
     if (!shouldShowConfirmation) {
       setShouldShowConfirmation(true);
     } else {
-      deleteTask();
-      // Redirect back to the main listing after deletion.
-      history.push(`/tasks`);
+      onDelete();
+      setShouldShowConfirmation(true);
     }
   };
 
