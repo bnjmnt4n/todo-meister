@@ -1,14 +1,14 @@
+import { QueryClient, QueryClientProvider } from "react-query";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Redirect,
+  Route,
+  Switch,
 } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
 
 import Header from "./Header";
-import TaskListRoute from "./routes/TaskList";
 import TaskItemRoute from "./routes/TaskItem";
+import TaskListRoute from "./routes/TaskList";
 
 const queryClient = new QueryClient();
 

@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
-import { Task } from "../types";
+
 import useToggleTask from "../hooks/useToggleTask";
+import { Task } from "../types";
 
 function TaskListItem({ id, name, description, completed }: Task) {
   const history = useHistory();
