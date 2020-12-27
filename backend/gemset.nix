@@ -271,19 +271,6 @@
     };
     version = "1.5.4";
   };
-  jsonapi-resources = {
-    dependencies = ["activerecord" "concurrent-ruby" "railties"];
-    groups = ["default"];
-    platforms = [];
-    source = {
-      fetchSubmodules = false;
-      rev = "d9f77e0ab2c02b186df8487dae334edf7b1e1bc8";
-      sha256 = "0ihn90wszc2qq2q9iwdqbhiyhrycwr7nb8snfhvd801fbsk11xin";
-      type = "git";
-      url = "https://github.com/bnjmnt4n/jsonapi-resources.git";
-    };
-    version = "0.9.11";
-  };
   kramdown = {
     dependencies = ["rexml"];
     groups = ["default"];
