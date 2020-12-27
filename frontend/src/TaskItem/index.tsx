@@ -62,6 +62,10 @@ function TaskItem({ taskId }: TaskItemProps) {
       <DeleteButton key={task.id} onDelete={handleDelete} />
       {deleteMessage && <div>{deleteMessage}</div>}
 
+      {task.due_date && (
+        <p>Due date: {new Date(Date.parse(task.due_date)).toDateString()}</p>
+      )}
+
       <p>{task.description}</p>
     </div>
   );
