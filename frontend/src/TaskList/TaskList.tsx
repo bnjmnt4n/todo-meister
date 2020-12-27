@@ -1,4 +1,5 @@
 import useTasks from "../hooks/useTasks";
+import CreateNewTaskButton from "./CreateNewTaskButton";
 import TaskListItem from "./TaskListItem";
 
 function TaskList() {
@@ -22,6 +23,7 @@ function TaskList() {
       {tasks.map((task) => (
         <TaskListItem key={task.id} {...task} />
       ))}
+      <CreateNewTaskButton />
     </div>
   );
 }

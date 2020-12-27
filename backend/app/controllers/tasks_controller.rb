@@ -17,6 +17,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
+    # TODO: use the first user for now until authentication has been setup.
+    @task.user_id || @task.user = User.first
+
     if @task.save
       render json: @task, status: :created, location: @task
     else
@@ -47,6 +50,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:user_id, :name, :description, :completed, :due_date)
+    params.require(:task).permit(:name, :description, :completed, :due_date)
   end
 end
