@@ -1,10 +1,11 @@
-import useTask from "./hooks/useTask";
+import useTask from "../hooks/useTask";
+import DeleteButton from "./DeleteButton";
 
-type TaskItemRouteProps = {
+type TaskItemProps = {
   taskId: number;
 };
 
-function TaskItem({ taskId }: TaskItemRouteProps) {
+function TaskItem({ taskId }: TaskItemProps) {
   const { task, isLoading, error } = useTask(taskId);
 
   if (isLoading) {
@@ -23,6 +24,7 @@ function TaskItem({ taskId }: TaskItemRouteProps) {
   return (
     <div>
       <input type="checkbox" checked={task.completed} />
+      <DeleteButton taskId={task.id} />
       <h1>{task.name}</h1>
       <p>{task.description}</p>
     </div>
