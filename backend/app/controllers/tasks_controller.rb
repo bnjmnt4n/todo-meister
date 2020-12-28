@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[update destroy]
+  before_action :set_task, only: %i[show update destroy]
 
   # GET /tasks
   def index
     # Fetch all tasks along with associated subtasks in 1 query
-    @tasks = Task.all.includes(:subtasks).distinct.order(:created_at)
+    @tasks = Task.all.includes(:subtasks, :tags).order(:created_at)
 
-    render json: @tasks.to_json(include: :subtasks)
+    render json: @tasks.to_json(include: %i[subtasks tags])
   end
 
   # POST /tasks
@@ -21,6 +21,11 @@ class TasksController < ApplicationController
     else
       render json: @task.errors, status: :unprocessable_entity
     end
+  end
+
+  # GET /tasks/1
+  def show
+    render json: @task
   end
 
   # PATCH/PUT /tasks/1
