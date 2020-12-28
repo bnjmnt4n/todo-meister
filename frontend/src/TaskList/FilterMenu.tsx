@@ -1,5 +1,6 @@
-import { Filter, useFilter } from "../state/Filter";
 import Select from "react-select";
+
+import { Filter, useFilter } from "../state/Filter";
 
 const FILTER_OPTIONS = Object.values(Filter).map((filterName) => ({
   value: filterName,
