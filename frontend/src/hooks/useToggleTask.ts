@@ -3,11 +3,9 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { Task } from "../types";
 import getApiLocation from "../utils/getApiLocation";
-import useTask from "./useTask";
 
 function useToggleTask(taskId: number) {
   const queryClient = useQueryClient();
-  const { task: originalTask, isLoading, error } = useTask(taskId);
 
   const toggleTaskMutation = useMutation(
     (completed) => axios.put(getApiLocation(`/tasks/${taskId}`), { completed }),
@@ -15,9 +13,11 @@ function useToggleTask(taskId: number) {
       onMutate: async (completed: boolean) => {
         // On mutation, cancel any outgoing fetches, so they don't overwrite our optimistic update.
         await queryClient.cancelQueries("tasks");
+        await queryClient.cancelQueries(["tasks", taskId]);
 
-        // Snapshot the previous value.
+        // Snapshot the previous values.
         const previousTasks = queryClient.getQueryData<Task[]>("tasks");
+        const previousTask = queryClient.getQueryData<Task>(["tasks", taskId]);
 
         // Optimistically update to the new value.
         if (previousTasks) {
@@ -35,29 +35,31 @@ function useToggleTask(taskId: number) {
             })
           );
         }
+        if (previousTask) {
+          queryClient.setQueryData<Task>(["tasks", taskId], {
+            ...previousTask,
+            completed,
+          });
+        }
 
-        return { previousTasks };
+        return { previousTasks, previousTask };
       },
       onError: (_err, _variables, context) => {
         // Roll back the optimistic update if the mutation fails.
         if (context?.previousTasks) {
           queryClient.setQueryData<Task[]>("tasks", context.previousTasks);
         }
-      },
-      onSettled: () => {
-        // Re-fetch the query after the mutation, since toggling todos is a very common task.
-        queryClient.invalidateQueries("tasks");
+        if (context?.previousTask) {
+          queryClient.setQueryData<Task>(
+            ["tasks", taskId],
+            context.previousTask
+          );
+        }
       },
     }
   );
 
-  const mutate = (currState: boolean) => {
-    if (!isLoading && !error && originalTask) {
-      toggleTaskMutation.mutate(!currState);
-    }
-  };
-
-  return mutate;
+  return (currState: boolean) => toggleTaskMutation.mutate(!currState);
 }
 
 export default useToggleTask;

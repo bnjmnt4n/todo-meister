@@ -11,6 +11,7 @@ function useUpdateTask(taskId: number) {
     (data: Partial<Task>) =>
       axios.put(getApiLocation(`/tasks/${taskId}`), data),
     {
+      // TODO: optimistic updates, and cache handling.
       onSettled: () => {
         // Re-fetch the query after the mutation.
         queryClient.invalidateQueries("tasks");

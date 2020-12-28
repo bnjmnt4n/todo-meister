@@ -8,10 +8,8 @@ function useTasks() {
     fetch(getApiLocation("/tasks")).then((res) => res.json())
   );
 
-  const tasks = data;
-
   return {
-    tasks,
+    tasks: data,
     isLoading,
     error,
   };
