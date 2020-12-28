@@ -24,7 +24,12 @@ function useCreateTask() {
         if (previousTasks) {
           queryClient.setQueryData<Task[]>("tasks", [
             ...previousTasks,
-            data as Task,
+            {
+              ...data,
+              id: Infinity,
+              created_at: String(new Date),
+              updated_at: String(new Date),
+            } as Task
           ]);
         }
 
@@ -34,6 +39,17 @@ function useCreateTask() {
         // Roll back the optimistic update if the mutation fails.
         if (context?.previousTasks) {
           queryClient.setQueryData<Task[]>("tasks", context.previousTasks);
+        }
+      },
+      onSuccess: async (data) => {
+        const previousTasks = queryClient.getQueryData<Task[]>("tasks");
+
+        // Add the task with the fresh data since previously there wasn't an ID.
+        if (previousTasks) {
+          queryClient.setQueryData<Task[]>("tasks", [
+            ...previousTasks.filter((task) => !task.id),
+            data as Task,
+          ]);
         }
       },
     }
