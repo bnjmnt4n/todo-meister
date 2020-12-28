@@ -1,32 +1,32 @@
 import { Filter, useFilter } from "../state/Filter";
+import Select from "react-select";
 
-const FILTER_NAMES = Object.values(Filter);
+const FILTER_OPTIONS = Object.values(Filter).map((filterName) => ({
+  value: filterName,
+  label: filterName,
+}));
 
 function FilterMenu() {
   const { filter, setFilter } = useFilter();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(event.target.value as Filter);
+  const selectedIndex = FILTER_OPTIONS.findIndex(
+    ({ value }) => value === filter
+  );
+
+  const handleChange = (option?: typeof FILTER_OPTIONS[number] | null) => {
+    if (option?.value) {
+      setFilter(option.value);
+    }
   };
 
   return (
     <div>
       Filter:
-      {FILTER_NAMES.map((filterName) => {
-        return (
-          <>
-            <input
-              type="radio"
-              name="filter"
-              value={filterName}
-              id={filterName}
-              checked={filterName === filter}
-              onChange={handleChange}
-            />{" "}
-            <label htmlFor={filterName as string}>{filterName}</label>
-          </>
-        );
-      })}
+      <Select
+        value={FILTER_OPTIONS[selectedIndex]}
+        options={FILTER_OPTIONS}
+        onChange={handleChange}
+      />
     </div>
   );
 }
