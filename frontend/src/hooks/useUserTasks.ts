@@ -1,5 +1,5 @@
 import { useFilter } from "../state/Filter";
-import { useSortOrder } from "../state/SortOrder";
+import { useSortSettings } from "../state/SortSettings";
 import filterTasks from "../utils/filterTasks";
 import sortTasks from "../utils/sortTasks";
 import useTasks from "./useTasks";
@@ -9,12 +9,12 @@ import useTasks from "./useTasks";
 function useUserTasks() {
   const { isLoading, error, tasks } = useTasks();
   const { filter } = useFilter();
-  const { sortOrder } = useSortOrder();
+  const { sortBy, sortOrder } = useSortSettings();
 
   let userTasks = tasks;
   if (userTasks) {
     userTasks = filterTasks(userTasks, filter);
-    userTasks = sortTasks(userTasks, sortOrder);
+    userTasks = sortTasks(userTasks, sortBy, sortOrder);
   }
 
   return {

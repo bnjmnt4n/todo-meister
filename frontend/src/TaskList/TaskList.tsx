@@ -1,7 +1,8 @@
 import useUserTasks from "../hooks/useUserTasks";
 import CreateNewTaskButton from "./CreateNewTaskButton";
 import FilterMenu from "./FilterMenu";
-import SortOrderMenu from "./SortOrderMenu";
+import SortByMenu from "./SortByMenu";
+import SortSettingsMenu from "./SortOrderMenu";
 import TaskListItem from "./TaskListItem";
 
 function TaskList() {
@@ -23,7 +24,8 @@ function TaskList() {
   return (
     <div>
       <FilterMenu />
-      <SortOrderMenu />
+      <SortByMenu />
+      <SortSettingsMenu />
       <CreateNewTaskButton />
       {tasks.map((task) => (
         <TaskListItem key={task.id} {...task} />

@@ -10,7 +10,7 @@ import Header from "./Header";
 import TaskItemRoute from "./routes/TaskItem";
 import TaskListRoute from "./routes/TaskList";
 import { FilterProvider } from "./state/Filter";
-import { SortOrderProvider } from "./state/SortOrder";
+import { SortSettingsProvider } from "./state/SortSettings";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +19,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <FilterProvider>
-          <SortOrderProvider>
+          <SortSettingsProvider>
             <div>
               <Header />
               <Switch>
@@ -32,7 +32,7 @@ function App() {
                 <Redirect to="/" />
               </Switch>
             </div>
-          </SortOrderProvider>
+          </SortSettingsProvider>
         </FilterProvider>
       </Router>
     </QueryClientProvider>

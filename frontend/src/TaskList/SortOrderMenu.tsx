@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-import { SortOrder, useSortOrder } from "../state/SortOrder";
+import { SortOrder, useSortSettings } from "../state/SortSettings";
 
 const SORT_ORDER_OPTIONS = Object.values(SortOrder).map((sortOrderName) => ({
   value: sortOrderName,
@@ -8,7 +8,7 @@ const SORT_ORDER_OPTIONS = Object.values(SortOrder).map((sortOrderName) => ({
 }));
 
 function SortOrderMenu() {
-  const { sortOrder, setSortOrder } = useSortOrder();
+  const { sortOrder, setSortOrder } = useSortSettings();
 
   const selectedIndex = SORT_ORDER_OPTIONS.findIndex(
     ({ value }) => value === sortOrder
@@ -22,7 +22,7 @@ function SortOrderMenu() {
 
   return (
     <div>
-      Sort by:
+      Sort order:
       <Select
         value={SORT_ORDER_OPTIONS[selectedIndex]}
         options={SORT_ORDER_OPTIONS}
