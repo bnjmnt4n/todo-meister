@@ -29,7 +29,9 @@ function sortTasks(tasks: Task[], sortBy: SortBy, sortOrder: SortOrder) {
     // Data returned from the backend API is already sorted by creation date by default.
     case SortBy.CreatedAt:
     default:
-      return sortOrder === SortOrder.Ascending ? tasks : orderBy(tasks, (task) => Date.parse(task.created_at), order);
+      return sortOrder === SortOrder.Ascending
+        ? tasks
+        : orderBy(tasks, (task) => Date.parse(task.created_at), order);
   }
 }
 

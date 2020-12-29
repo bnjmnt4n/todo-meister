@@ -3,6 +3,7 @@ import CreateNewTaskButton from "./CreateNewTaskButton";
 import FilterMenu from "./FilterMenu";
 import SortByMenu from "./SortByMenu";
 import SortSettingsMenu from "./SortOrderMenu";
+import TagFilterMenu from "./TagFilterMenu";
 import TaskListItem from "./TaskListItem";
 
 function TaskList() {
@@ -24,6 +25,7 @@ function TaskList() {
   return (
     <div>
       <FilterMenu />
+      <TagFilterMenu />
       <SortByMenu />
       <SortSettingsMenu />
       <CreateNewTaskButton />
