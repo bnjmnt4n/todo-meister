@@ -42,20 +42,17 @@ function useToggleTask(taskId: number) {
           });
         }
 
-        return { previousTasks, previousTask };
+        // Callback function to roll back the optimistic update if the mutation fails.
+        return () => {
+          if (previousTasks) {
+            queryClient.setQueryData<Task[]>("tasks", previousTasks);
+          }
+          if (previousTask) {
+            queryClient.setQueryData<Task>(["tasks", taskId], previousTask);
+          }
+        };
       },
-      onError: (_err, _variables, context) => {
-        // Roll back the optimistic update if the mutation fails.
-        if (context?.previousTasks) {
-          queryClient.setQueryData<Task[]>("tasks", context.previousTasks);
-        }
-        if (context?.previousTask) {
-          queryClient.setQueryData<Task>(
-            ["tasks", taskId],
-            context.previousTask
-          );
-        }
-      },
+      onError: (_err, _variables, rollback) => rollback?.(),
     }
   );
 

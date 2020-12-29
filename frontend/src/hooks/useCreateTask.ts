@@ -7,7 +7,7 @@ import getApiLocation from "../utils/getApiLocation";
 function useCreateTask() {
   const queryClient = useQueryClient();
 
-  return useMutation<Task, any, Partial<Task>, { previousTasks?: Task[] }>(
+  return useMutation<Task, any, Partial<Task>, () => void>(
     (data) =>
       axios
         .post(getApiLocation("/tasks"), data)
@@ -35,14 +35,14 @@ function useCreateTask() {
           ]);
         }
 
-        return { previousTasks };
+        // Callback function to roll back the optimistic update if the mutation fails.
+        return () => {
+          if (previousTasks) {
+            queryClient.setQueryData<Task[]>("tasks", previousTasks);
+          }
+        };
       },
-      onError: (_err, _variables, context) => {
-        // Roll back the optimistic update if the mutation fails.
-        if (context?.previousTasks) {
-          queryClient.setQueryData<Task[]>("tasks", context.previousTasks);
-        }
-      },
+      onError: (_err, _variables, rollback) => rollback?.(),
       onSuccess: async (data) => {
         const previousTasks = queryClient.getQueryData<Task[]>("tasks");
 
