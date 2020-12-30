@@ -1,11 +1,12 @@
 #+TITLE: CVWO AY2020/21 Mid-Assignment Submission
+#+LATEX_HEADER: \usepackage[margin=1.5in]{geometry}
 #+LATEX_CLASS_OPTIONS: [12pt]
 #+OPTIONS: toc:nil
 
 * Introduction
 Hi, I'm Benjamin Tan, a Year 1 Computer Science student. I have had prior programming experience, particularly with JavaScript and React, but have not had experience in creating a full-stack project from scratch. I hope that this assignment during the AY2020/21 winter break would allow me increase my experience in creating complex projects, and bring me up to speed on the various tools used to develop websites commonly used in the CVWO technology stack.
 
-My goals for this assignment would be to learn and gain familiarity with the various technologies which I have not used before (Ruby, Rails, SQL/databases/PostgreSQL) and create a project with good code structure and techniques that is easily maintained.
+My goals for this assignment would be to learn and gain familiarity with the various technologies which I have not used before (Ruby, Rails, SQL / databases / PostgreSQL) and create a project with good code structure and techniques that is easily maintained.
 
 ** Primary goals
 - clear and thorough documentation, including [[https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html][well-written Git commit messages]]
@@ -25,7 +26,7 @@ Tasks will contain a brief title and an optional extended description. If desire
 * App structure
 - The designed website/app will have separate frontend and backend codebases.
 - The frontend will be a React application, written in [[https://www.typescriptlang.org/][TypeScript]], which makes use of [[https://reactrouter.com/][React Router]] to handle routing, and [[https://react-query.tanstack.com/][react-query]] to handle interfacing with the backend.
-- The backend will be a Rails application, which provides a RESTful JSON API. Integration of Rails into a JSON API will be performed with the [[https://jsonapi-resources.com/][jsonapi-resources]] gem.
+- The backend will be a Rails application, which provides a RESTful JSON API.
 - The frontend and backend codebases will be linted according to best practices using [[https://eslint.org/][ESLint]] and [[https://github.com/rubocop-hq/rubocop][Rubocop]] respectively.
 - The backend will be backed by a PostgreSQL database. PostgreSQL was chosen since it appears to be one of the more widely used relational databases, and is offered by Heroku, which could lead to a simpler deploy process.
 - Authentication between the frontend and backend will likely be performed using [[https://github.com/jwt/ruby-jwt][JSON Web Tokens]], but will remain a lower priority until after the main tasks functionality has been implemented.
@@ -33,14 +34,15 @@ Tasks will contain a brief title and an optional extended description. If desire
 - Styling of the app will either be performed using [[https://styled-components.com/][styled-components]], or using a CSS library like [[https://www.tailwindapp.com/][Tailwind]] or [[https://getbootstrap.com/][Bootstrap]].
   /Note:/ Styling of the app will remain a low priority: my primary focus will be making the rest of the application functional, and styling will probably be the last task once the main features are completed.
 
-* TODO Database schema
+* Database schema
+[[file:./database-schema.jpg]]
 
 * Tasks
 | Task                                                  | Priority | Status      |
 |-------------------------------------------------------+----------+-------------|
 | CRUD of tasks and subtasks                            | High     | In progress |
-| Filtering of tasks by completion status and tags      | High     | Not started |
-| Sorting by creation date, last edit date and due date | High     | Not started |
+| Filtering of tasks by completion status and tags      | High     | Completed   |
+| Sorting by creation date, last edit date and due date | High     | Completed   |
 | Users and authentication                              | Medium   | Researching |
 | Automated deploys of the frontend and backend         | Medium   | Completed   |
 | Editing of tags                                       | Low      | Not started |

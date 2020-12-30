@@ -10,9 +10,9 @@
 
 ### Submission
 
-- [ ] [Mid-Assignment Submission Report](./submission/mid-assignment.org)
+- [X] [Mid-Assignment Submission Report](./submission/mid-assignment.pdf)
 - [X] [Rails screenshot](./submission/ruby-on-rails-screenshot.jpg)
-- [ ] Database schema diagram
+- [X] [Database schema diagram](./submission/database-schema.jpg)
 
 ## Documentation
 
