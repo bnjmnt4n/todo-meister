@@ -83,6 +83,24 @@ function TaskItem({ taskId }: TaskItemProps) {
         <p>Due date: {new Date(Date.parse(task.due_date)).toDateString()}</p>
       )}
 
+      {task.tags?.length ? (
+        <div>
+          Tags:
+          {task.tags.map((tag) => (
+            <p key={tag.id}>{tag.name}</p>
+          ))}
+        </div>
+      ) : null}
+
+      {task.subtasks?.length ? (
+        <div>
+          Subtasks:
+          {task.subtasks.map((subtask) => (
+            <p key={subtask.id}>{subtask.name}</p>
+          ))}
+        </div>
+      ) : null}
+
       <p>
         <textarea {...description} />
       </p>

@@ -13,7 +13,7 @@ function useTask(taskId: number) {
       initialData: () =>
         queryClient
           .getQueryData<Task[]>("tasks")
-          ?.find((task) => task.id === taskId),
+          ?.find?.((task) => task.id === taskId),
       initialDataUpdatedAt: () =>
         queryClient.getQueryState("tasks")?.dataUpdatedAt,
     }

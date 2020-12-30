@@ -4,9 +4,9 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     # Fetch all tasks along with associated subtasks in 1 query
-    @tasks = Task.all.includes(:subtasks, :tags).order(:created_at)
+    @tasks = Task.all.includes(:tags).order(:created_at)
 
-    render json: @tasks.to_json(include: %i[subtasks tags])
+    render json: @tasks.to_json(include: :tags)
   end
 
   # POST /tasks
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
-    render json: @task
+    render json: @task.to_json(include: %i[tags subtasks])
   end
 
   # PATCH/PUT /tasks/1
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.includes(:tags, :subtasks).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
